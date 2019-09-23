@@ -1,6 +1,6 @@
 <?php
 
-include "../config/database.php";
+include "$_SERVER[DOCUMENT_ROOT]/config/database.php";
 
 abstract class Model{
     private static $_bdd;
@@ -22,7 +22,7 @@ abstract class Model{
 
     protected function getAll($table, $obj){
         $var = [];
-        $req = $this->getBdd()->prepare('SELECT * FROM'.table.' ORDER BY id desc');
+        $req = $this->getBdd()->prepare('SELECT * FROM '.$table.' ORDER BY id desc');
         $req->execute();
         while ($data = $req->fetch(PDO::FETCH_ASSOC))
         {

@@ -1,9 +1,12 @@
 <?php
+require_once('views/View.php');
 
 class Router{
     private $_ctrl;
     private $_view;
 
+
+    // Requete du routeur
     public function routeReq(){
         try{
             // CHARGEMENT AUTOMATIQUE DES CLASSES, spl inclut le fichier php si il est detecte
@@ -18,7 +21,7 @@ class Router{
 
                 $controller = ucfirst(strtolower($url[0]));
                 $controllerClass = "Controller".$controller;
-                $controllerFile = "controllers/".controllerClass.".php";
+                $controllerFile = "controllers/".$controllerClass.".php";
 
                 if (file_exists($controllerFile)){
                     require_once($controllerfile);
@@ -36,6 +39,8 @@ class Router{
         // GESTION DES ERREURS
         catch(Exception $e){
             $errorMsg = $e->getMessage();
+            $this->_view = new View('Error');
+            $this->_view->generate(array('errorMsg' => $errorMsg));
             require_once('views/viewError.php');
         }
     }
