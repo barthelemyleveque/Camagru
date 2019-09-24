@@ -15,8 +15,7 @@ class ControllerAcceuil{
     private function images(){
         $this->_imageManager = new ImageManager;
         $images = $this->_imageManager->getImages();
-
         $this->_view = new View('Acceuil');
-        $this->_view->generate(array('images' => $articles));
+        $this->_view->generate(array('images' => $images));
     }
 }

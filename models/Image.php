@@ -1,7 +1,8 @@
 <?php
 
 class Image{
-    private $_id;
+    private $_image_id;
+    private $_user_id;
     private $_title;
     private $_url;
     private $_date;
@@ -21,11 +22,17 @@ class Image{
     }
 
     // SETTERS
-    public function setId($id){
+    public function setImage_id($id){
+        $image_id = (int) $id;
+
+        if ($id > 0)
+            $this->_image_id = $id;
+    }
+    public function setUser_id($id){
         $id = (int) $id;
 
         if ($id > 0)
-            $this->_id = $id;
+            $this->_user_id = $id;
     }
     public function setTitle($title){
         if (is_string($title))
